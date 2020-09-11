@@ -196,6 +196,7 @@ hr.style-four {
 
 .contact-bg h1{
   padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 
@@ -364,4 +365,17 @@ footer{
 
 
 
+}
+
+
+.contact-bg{
+
+  align-items: center;
+  text-align: center;
+
+}
+
+.contact-bg h1{
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
