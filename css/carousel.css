@@ -8,9 +8,9 @@
 
 }
 .carousel button{
-    margin-top: 1em;
+    margin-top: 1.5em;
     margin-right: 2em;
-    margin-left: 80em;
+    margin-left: 73em;
     padding: 9px 22px;
 }
 
@@ -98,5 +98,54 @@
   width: 200px;
   height: 200px
 
+
+}
+
+
+@media only screen and (max-width: 600px) {
+
+
+  .carousel button{
+    margin-top: 5em;
+  
+    margin-left: 13.5em;
+    padding: 9px 22px;
+}
+
+
+.carousel h5{
+  padding-left: 4em;
+  font-size: 1.5em;
+}
+
+.card-img-top{
+  border-radius: 200px;
+
+}
+
+.carousel p{
+  padding-left: 0.5em;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.carousel img{
+  margin-top: 20px;
+  margin-left: 135px;
+  width: 100px;
+  height: 100px
+
+
+}
+
+.slider {
+  background: white;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  height: auto;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+}
 
 }

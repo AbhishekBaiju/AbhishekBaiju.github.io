@@ -41,6 +41,7 @@ body{
 }
 
 
+
 .about-bg{
 
      background-image: url("../images/girl doodle.png");
@@ -179,4 +180,146 @@ hr.style-four {
     height: 13px;
     border: 0;
     box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+
+/*responsive crap*/
+@media only screen and (max-width: 600px) {
+  /* home-section */
+.home-bg{ 
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: 20px 190px;
+    text-align: center;
+}
+
+.home-bg h1{
+    font-size: 2.5rem;
+    padding-right: 0.1em;
+    padding-top: 7em;
+}
+.home-bg p{
+    margin-bottom: 1.5em;
+    padding-right: 0.4em;
+}
+
+
+.btnss{
+    padding-right: 0.5em;
+  
+}
+
+
+
+
+
+
+
+
+.about-bg{
+
+      background-image: url("../images/girl doodle.png");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 97px -1px;
+    text-align: left;
+
+}
+
+.about-bg h1{
+    font-size: 3em;
+    margin-left: 0.1em;
+     padding-right: 1px;
+     padding-bottom: 0.5em;
+ 
+    
+}
+
+.about-bg h2{
+    padding-top: 10em;
+    font-size: 1.8em;
+    margin-left: 0.3em;
+
+    
+    font-weight: 100;
+
+}
+
+.about-bg p{
+    margin-left: -29.5em;
+    font-size: 1.4em;
+    text-align: left
+    padding-left:0;
+    padding-right: 0px;
+}
+
+.about-bg button{
+    margin-left: 0.5em;
+    font-size: 1em;
+    padding: 10px 15px 10px 15px;
+}
+
+
+.about-bg a{
+  font-size: 0.9em;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* carousel-title*/
+
+.c-title{
+    text-align: right;
+    padding-left: 0px;
+    padding-right: 0em;
+    margin-bottom: 3em;
+}
+.c-title h1{
+    margin-top:2em;
+    margin-left: 0em;
+    padding: 0;
+    font-size: 1.5em;
+    
+}
+.c-title h6{
+    
+    opacity: 0.5;
+    padding-right:0;
+    height: auto;
+    font-size: 0.8em;
+}
+
+.con-count{
+    background-color: #0060FF;
+   border-radius: 6px;
+    color: white;
+    margin-left: 1px;
+    margin-top: 3em;
+}
+.con-count h6{
+    padding-left: 1px;
+    padding-right: 2px;
+    font-size: 1em;
+
+}
+
+
+
 }
