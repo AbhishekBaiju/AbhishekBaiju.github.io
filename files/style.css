@@ -1,22 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap');
 
-
-
-
-
-
-
-
 body{
     margin: 0;
-        
+    background-color: white;
+    box-sizing: border-box;
+    font-family: "Roboto Mono"  
 }
 
 
 .fwd{
-    height: 100%;
-    background-color: white;
-    box-sizing: border-box;
-    font-family: "Roboto Mono"
+    height: 100vh;
+    
     
 }
