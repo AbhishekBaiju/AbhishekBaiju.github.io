@@ -6,6 +6,7 @@ function SubForm (){
         success: function success(){
           document.getElementById('msg').innerHTML = "Submitted Successfully";
           document.getElementById("reset").disabled = true;
+          document.getElementById("myForm").reset();
           
           setTimeout("location.href = 'https://tinkerhub.org/';",1500);
         },
