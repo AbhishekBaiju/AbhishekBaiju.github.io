@@ -36,7 +36,12 @@
             font-family: 'Abel', sans-serif;
             color: black;
         }
-
+        span{
+        	-webkit-transition: all .5s ease;
+			-moz-transition: all .5s ease;
+			transition: all .5s ease;
+        }
+        span:hover { font-size: 8vw; color: red; }
         @media only screen and (max-width: 600px) {
         body{
             height: 95vh;
@@ -69,7 +74,7 @@
     </head>
 	    <body class="shadow-lg ml-3 mr-3 my-3">
 	    	<div class="yes">
-	    		<h1 class="emoji">◉_◉</h1>
+	    		<h1 class="emoji"><span>◉</span>_<span>◉</span></h1>
 	    		<h1 class="titl">Page not found</h1>
 	    		<p><a href="http://abhishekbaiju.github.io/" class="back">Take me back</a></p>
 	    		<p class="foot"><a href="http://abhishekbaiju.github.io/" class="foot">Abhishek Baiju</a></p>
