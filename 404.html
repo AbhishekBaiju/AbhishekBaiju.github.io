@@ -23,25 +23,39 @@
             padding-top: 3em;
             font-size: 5vw;
         }
-        .back{
+        .back a{
             text-decoration: none;
             font-size: 1.5vw;
             color: red;
+            
         } 
         .titl{
             font-size: 3vw;
         }
-        .foot{
-            padding-top: 1em;
+        .foot a{
+            padding-top: 1vw;
             font-family: 'Abel', sans-serif;
             color: black;
+            text-decoration: none;
+            text-decoration: underline;
+            -webkit-transition: all .1s ease;
+			-moz-transition: all .1s ease;
+			transition: all .3s ease;
+        }
+        .foot:hover{
+        	font-size: 1.5vw
         }
         span{
-        	-webkit-transition: all .5s ease;
-			-moz-transition: all .5s ease;
-			transition: all .5s ease;
+        	-webkit-transition: all .1s ease;
+			-moz-transition: all .1s ease;
+			transition: all .3s ease;
         }
-        span:hover { font-size: 8vw; color: red; }
+        span:hover { 
+        	font-size: 8vw;
+         	color: red;
+         }
+         
+       
         @media only screen and (max-width: 600px) {
         body{
             height: 95vh;
@@ -55,7 +69,7 @@
             padding-top: 3em;
             font-size: 15vw;
         }
-        .back{
+        .back a{
             text-decoration: none;
             font-size: 5vw;
             color: red;
@@ -63,10 +77,16 @@
         .titl{
             font-size: 10vw;
         }
-        .foot{
-            padding-top: 1em;
+        .foot a{
+            padding-top: 3vw;
             font-family: 'Abel', sans-serif;
             color: black;
+            -webkit-transition: all .1s ease;
+			-moz-transition: all .1s ease;
+			transition: all .3s ease;
+        }
+        .foot:hover{
+        	font-size: 3vw;
         }
         }    
     </style>
@@ -76,8 +96,8 @@
 	    	<div class="yes">
 	    		<h1 class="emoji"><span>◉</span>_<span>◉</span></h1>
 	    		<h1 class="titl">Page not found</h1>
-	    		<p><a href="http://abhishekbaiju.github.io/" class="back">Take me back</a></p>
-	    		<p class="foot"><a href="http://abhishekbaiju.github.io/" class="foot">Abhishek Baiju</a></p>
+	    		<p class="back"><a href="http://abhishekbaiju.github.io/">🡠 Take me back</a></p>
+	    		<p class="foot"><a href="http://abhishekbaiju.github.io/">Abhishek Baiju</a></p>
 	    	</div>
 	   	</body>
    	</html>
