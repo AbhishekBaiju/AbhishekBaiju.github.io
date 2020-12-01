@@ -1,6 +1,5 @@
 /* Made by abhishekbaiju.github.io */
-
-.BC4V9b, .Bx7THd, .CYZUZd, .EC0pCb, .GN4RFc, .HALYaf, .HhsXW, .HxAmUd, .JAPqpe, .LsDE5, .MaqJqd, .NzPR9b, .OvyUe, .PbnGhe, .QkY02, .Qmt7oc, .R6Lfte, .ThdJC, .V8Q1le, .VdLOD, .a6HQpb, .cSO8I, .e19J0b, .fe4pJf, .g3VIld, .jgvuAb, .l4V7wb, .ox9SMb, .p5X8Ye, .r5iSrd, .rG0ybd, .to0C6d, .uArJ5e, .uFGEzd, .uFGEzd .uArJ5e, .uHMk6b, .yTfxtb, .yWbJE, .z38b6 {
+ .BC4V9b, .Bx7THd, .CYZUZd, .EC0pCb, .GN4RFc, .HALYaf, .HhsXW, .HxAmUd, .JAPqpe, .LsDE5, .MaqJqd, .NzPR9b, .OvyUe, .PbnGhe, .QkY02, .Qmt7oc, .R6Lfte, .ThdJC, .V8Q1le, .VdLOD, .a6HQpb, .cSO8I, .e19J0b, .fe4pJf, .g3VIld, .jgvuAb, .l4V7wb, .ox9SMb, .p5X8Ye, .r5iSrd, .rG0ybd, .to0C6d, .uArJ5e, .uFGEzd, .uFGEzd .uArJ5e, .uHMk6b, .yTfxtb, .yWbJE, .z38b6 {
     background-color:#1a1a1a!important
 }
 .MocG8c, .NVUqMb, .OA0qNb, .OxCgzb .kCyAyd .l4V7wb, .aCsJod, .koV58, .oZ3U3b {
@@ -50,11 +49,64 @@
 .ZjFb7c {
     color:white !important;
 }
-.QMC9Zd {
+.QMC9Zd, .Oh2Vvd, .mobgod {
     color:white !important;
 }
 [aria-label*="microphone"] {
     left: 18.1em;
 }
-
-
+.ws7pec, k3Pzib {
+    background-color:#5a5a5a;
+}
+.mtr0Je {
+    background-color:transparent
+}
+.AKhouc {
+    color:#5f6368
+}
+.VfPpkd-kBDsod {
+    color:#5a5a5a
+}
+.S3RDod {
+    background-color:black
+}
+.YpQfNc {
+    color:white;
+    text-shadow: 1px 1px 5px #5a5a5a;
+    content:"This text replaces the original.";
+    visibility: visible;
+    position: relative;
+}
+.YpQfNc:after {
+    color:white;
+    text-shadow: 1px 1px 5px #5a5a5a;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content:"podei";
+}
+.rH9mRb {
+    color:#a6a6a6;
+}
+.I680R {
+    color:#a6a6a6;
+}
+.gb_Vd, .gb_fe, .gb_5d, .gb_4d {
+    background-color:black
+}
+.VdLOD, .yUoCvf {
+    background-color:grey
+}
+.VfPpkd-Jh9lGc {
+    background-color:grey
+}
+#i3 {
+    color:white
+}
+.material-icons-extended, .VfPpkd-fmcmS-TvZj5c, .VfPpkd-fmcmS-TvZj5c-OWXEXe-M1Soyc {
+    color:white !important
+}
+.gb_ua {
+    content: url("https://raw.githubusercontent.com/AbhishekBaiju/404/91c4ccf6a3c6f0ac49737bc7c39aecc886961c78/gmeet.svg");
+}
