@@ -2,6 +2,19 @@
 
 
 body{
-    font-family: Montserrat;
+    font-family: Montserrat;}
         
-}
+    
+    a {
+        color: #6c757d!important;
+      }
+    
+    
+    a:link {
+        text-decoration: none;
+        color: #6c757d!important;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      
