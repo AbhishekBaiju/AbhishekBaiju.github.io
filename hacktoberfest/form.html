@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="assets/nav-logo.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/land/new.css">
+    <title>Hack 2020</title>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style type="text/css">
+	.top-btn-bl{
+	  background-color: #0060FF; 
+	  border: none;
+	  color: white;
+	  margin-left: 1em;
+	  padding: 8px 40px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 16px;
+	  border-radius: 6px;
+	  text-decoration: none;
+	}
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="https://tinkerhub.org/"><img src="assets/nav-logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> TinkerHub</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://tinkerhub.org/hactoberfest/about#contact">   Contact <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="top-btn-bl" onclick="window.location.href='https://tinkerhub.org/hactoberfest/about'">Know more</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+            <div class="container">
+                <h1 id="title">TinkerHub HacktoberFest</h1> 
+      
+                <form class="needs-validation" id="myForm" method="post" novalidate>
+                        <div class="row">
+                        <div class="col-sm">
+                        <label for="Name">Name:</label>
+                        <input type="text" class="form-control" name="Name" id="validationCustom01" placeholder="First name" required>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <label for="Github-Username">Github Username:</label>
+                        <input type="text" class="form-control" name="Github-Username" id="validationCustom02" placeholder="Github-Username " required>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                      </div>
+                      
+                    </div>
+                      <div class="row">
+                    <div class="col-sm">
+                        <label for="Email">Email:<span>*</span></label>
+                       <input name="Email" id="Email" type="text" class="form-control" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="col-sm">
+                       <label for="Phone_Number">Phone Number:<span>*</span></label>
+                       <input name="Phone_Number" id="Phone_Number" type="text" class="form-control" placeholder="8888-8888-88" required>
+                    </div>
+                    </div>      
+
+                    <div class="row">
+                    <div class="col-sm">
+                        <label for="College">College:<span>*</span></label>
+                        <input name="College" id="College" type="text" class="form-control" placeholder="College" required>
+                    </div>
+   
+                    <div class="col-sm">
+                       <label for="Branch">Branch<span>*</span></label>
+                       <input name="Branch" id="Branch" id="Branch" type="text" class="form-control" placeholder="Branch of Study" required>
+                    </div>
+                   </div>
+
+                    <div class="col-lg-4 mb-3 also">
+                        <h6>Have you participated in the previous seasons of Hactoberfest?<span>*</span></h6>  
+                        <div class="form-check form-check-inline" id="selcet_1">
+                          <input class="form-check-input" type="radio" name="Question_1" id="Yes" value="Yes" required>
+                          <label class="form-check-label" for="Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline" id="selcet_2">
+                          <input class="form-check-input" type="radio" name="Question_1" id="no" value="No" required>
+                          <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <h6>How would you like to participate?<span>*</span></h6> 
+                        <div class="form-check form-check-inline" id="selcet_3">
+                          <input class="form-check-input" type="radio" name="Question_2" id="Mentor" value="Mentor" required>
+                          <label class="form-check-label" for="Mentor">Mentor</label>
+                        </div>
+                        <div class="form-check form-check-inline" id="selcet_4">
+                          <input class="form-check-input" type="radio" name="Question_2" id="Participant" value="Participant" required>
+                          <label class="form-check-label" for="Participant">Participant</label>
+                        </div>
+                    </div>
+
+
+
+  <div onclick="Subform()" id="reset"><button class="btn btn-primary" id="myBtn" type="submit" >Submit</button></div>
+  <!-- <button class="btn btn-primary booty" id="reset" type="submit" onclick="SubForm()">Submit form</button> -->
+  <p id="msg"></p>
+</form>
+</div>
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        // val=false
+        document.querySelector('#myBtn').innerHTML = 'Oops!';
+        document.getElementById('myBtn').style.backgroundColor='Red';
+        setTimeout("document.querySelector('#myBtn').innerHTML = 'Submit';",1000);
+        setTimeout("document.getElementById('myBtn').style.backgroundColor='#0060FF';",1000);
+        document.getElementById('msg').innerHTML = "Fill them all!";
+        document.getElementById('msg').style.color='Red';
+        ///////
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        form.classList.add('was-validated');
+        if (form.checkValidity() === true) {
+          //after val=true ::before sub
+          document.querySelector('#myBtn').innerHTML = 'Submitting';
+          document.getElementById('myBtn').style.backgroundColor='#f0e130';
+          document.getElementById('msg').innerHTML = "working on it!";
+          document.getElementById('msg').style.color='Green';
+          ////////
+          $.ajax({
+        url:'https://api.apispreadsheets.com/data/1706/',
+        type:'post',
+        data:$("#myForm").serializeArray(),
+        success: function success(){
+          document.getElementById('msg').innerHTML = "Submitted Successfully!";
+          document.getElementById("myBtn").disabled = true;
+          document.getElementById('myBtn').style.backgroundColor='Green';
+          document.querySelector('#myBtn').innerHTML = 'Submitted';
+          document.getElementById('msg').style.color='Green';
+          setTimeout("document.getElementById('msg').innerHTML = 'You will get an email in 24hrs!';",1500);
+          //disabling form
+          document.getElementById("validationCustom01").disabled = true;
+          document.getElementById("validationCustom02").disabled = true;
+          document.getElementById("Phone_Number").disabled = true;
+          document.getElementById("Email").disabled = true;
+          document.getElementById("College").disabled = true;
+          document.getElementById("Branch").disabled = true;
+          //redirect
+          setTimeout("document.getElementById('msg').innerHTML = 'Redirecting....';",4000);
+          setTimeout("window.open('https://tinkerhub.org/hactoberfest/about', '_blank');",6000);
+          setTimeout("document.getElementById('msg').innerHTML = 'You will get an email in 24hrs!';",7500);
+
+          //document.getElementById("myForm").reset();
+
+          },
+        error: function error(){
+          document.getElementById('msg').innerHTML = "server error";
+          document.getElementById('msg').style.color='Red';
+          setTimeout("document.getElementById('msg').innerHTML = 'Try Again later, Sorry for inconvenience.';",1000);
+          setTimeout("document.getElementById('msg').style.color='Grey';",1000);
+
+          //
+          document.querySelector('#myBtn').innerHTML = 'Oops!';
+          document.getElementById('myBtn').style.backgroundColor='Red';
+          setTimeout("document.querySelector('#myBtn').innerHTML = 'Submit';",1000);
+          setTimeout("document.getElementById('myBtn').style.backgroundColor='#0060FF';",1000);
+          //
+        }
+    });
+        }
+
+    
+      }, false);
+    });
+    
+  }, false);
+  
+})();
+
+</script>
+</div> 
+</body>
+</html>

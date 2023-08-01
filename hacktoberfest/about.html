@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="open source, tinkerhub, webpages, development, learn, HTML, CSS, JavaScript">
+    <meta name="description" content="A webpage to promote Open source Contributions">
+    <link rel="shortcut icon" href="assets/nav-logo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/00c0663202.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+    	@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap');
+	body{
+    margin: 0;
+    font-family: "Roboto Mono"        
+	}
+	#bgg{
+	  background-color: white !important;
+	}
+
+	hr.style-two {
+	    height: 1px;
+	    border: 0;
+        opacity: 0;
+	    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+	}
+    .boldi{
+          font-weight: bold;
+        }
+    hr.style-one{
+            height: 1em;
+            border: 0;
+            box-shadow: inset 0 10px 5px -11px rgba(0, 0, 0, 0.5);
+        }
+        .lead{
+            font-size: 1.5vw;
+            opacity: 0.9;
+            text-decoration: none;
+        }
+        .h3{
+            font-size: 2.5vw;
+        }.h4{
+            font-size: 2vw;
+        }.h6{
+            font-size: 1.2vw;
+        }.display-4{
+            font-size: 3vw;
+            text-align: center; 
+        }.display-6{
+            font-size: 2.5vw;
+            text-align: center; 
+        }.navbar-brand{
+            font-size: 1.4vw;
+            text-align: center; 
+        }.nav-item{
+            font-size: 1vw;
+            text-align: center; 
+        }
+        .card-title{
+            font-size: 1.5vw;
+            text-align: center; 
+        }.card-img-top{
+            width: 100%;
+            height: auto; 
+        }
+        .nav-lo{
+            width: auto;
+            max-width: 2.5vw;
+            height: auto;
+        }.navbar-toggler-icon{
+            width: auto;
+            max-width: ;
+            height: auto;
+        }
+        .github-btn {
+          position: absolute;
+          right: 40px;
+          bottom: 50px;
+          text-decoration: none;
+          padding: 15px 25px;
+          border-radius: 4px;
+          box-shadow: 0px 4px 30px -6px rgba(36, 52, 70, 0.65);
+          background: #24292e;
+          color: #fff;
+          font-weight: bold;
+          letter-spacing: 1px;
+          font-size: 16px;
+          transition: all .3s ease-in-out;
+        }
+        
+@media only screen and (max-width: 600px) {
+        .lead{
+            font-size: 2.5vw;
+            opacity: 0.9;
+        }
+        .h3{
+            font-size: 4vw;
+        }.h4{
+            font-size: 3vw;
+        }.h6{
+            font-size: 2.5vw;
+        }.display-4{
+            font-size: 4vw;
+            text-align: center; 
+        }.display-6{
+            font-size: 4vw;
+            text-align: center; 
+        }.navbar-brand{
+            font-size: 2vw;
+            text-align: center; 
+        }.nav-item{
+            font-size: 1.5vw;
+            text-align: center; 
+        }
+        .nav-lo{
+            width: auto;
+            max-width: 2.5vw;
+            height: auto;
+        }
+
+</style>
+<title>About</title>
+</head>
+<body>
+<div class="all shadow-lg ml-3 mr-3 my-3 pb-1">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="bgg">
+    <a class="navbar-brand" href="https://tinkerhub.org/"><img src="assets/nav-logo.png" width="30" height="30" class="d-inline-block align-top nav-lo" alt=""> TinkerHub</a>
+    
+<!--
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    
+ <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+-->
+    <ul class="nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact <span class="sr-only">(current)</span></a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#FAQ">FAQ <span class="sr-only">(current)</span></a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://tinkerhub.org/hactoberfest">Get Started<span class="sr-only">(current)</span></a>
+      </li>
+     </ul>
+<!--  </div>-->
+</nav>
+<div class="container">
+<div class="shadow px-4 pt-4 pb-2" id="program">
+      <h1 class="h3">How does the Mentorship Program Work?</h1>
+      <p class="lead">You can start with filling this <a href="https://tinkerhub.org/hactoberfest">form</a>. Upon submission we will send you a link to our discord channel where you can communicate with mentors and other participants about all things open source and hacktoberfest !</p>
+      <p class="lead">Our mentors are open source enthusiasts who hacked hacktoberfest in previous years. They are on a mission to help you to do the four pull requests and bring the open source community a new contributor by doing so. They will help you, to find interesting projects you can contribute, to learn from the road blocks you face in the journey and fix it and moreover to create an awesome hacktoberfest experience together.</p>
+      <p class="lead"><span class="boldi">Let the hacking begin!</span></p>
+</div>
+<hr class="style-two">
+<div class="shadow px-4 pt-4 pb-2" id="event">    
+      <h1 class="h3">Why should you join the event?</h1>
+      <p class="lead">HacktoberFest 2020 will be a great platform to step into the world of open source contribution. And being a part of the TinkerHub Mentorship event will help you connect with first time contributors, professionals and experienced contributors.<span class="boldi">There will be sessions , conducted as a part of the program</span> which will help you learn more and leap into the world of open source. So join Fast!</p>
+</div>
+
+<hr class="style-two">
+<div class="shadow px-4 pt-4 pb-2" id="hey">
+<!--<hr class="style-four">-->
+      <h1 class="h3">Hey, are you that amazing open source enthusiast I mentioned?</h1>
+      <p class="lead">One beautiful thing about hacktoberfest other than getting swags is how this will encourage more people to join the world of open source, stay and create awesome projects. TinkerHub is doing this hacktoberfest mentoring program as our 2 cent to that great effort.</p>
+      <p class="lead">With your  experience with acing the hacktoberfests of previous years you can help us. Join as a mentor for this endeavour by submitting this form as a mentor.</p>
+      <p class="lead">Wondering how you can help? Fill out this <a href="https://tinkerhub.org/hactoberfest">form</a></p>
+</div>
+<hr class="style-two">
+<div class="shadow px-4 pt-4 pb-2" id="what">
+<!--<hr class="style-four">-->
+      <h1 class="h3">What is actually HacktoberFest?</h1>
+      <p class="lead">Hacktoberfest is a month-long celebration of open source software run by DigitalOcean in partnership with GitHub and Twilio. Hacktoberfest is open to everyone in our global community! Five quality pull requests must be submitted to public GitHub repositories.</p>
+      <p class="lead">To earn your Hacktoberfest tee or tree reward, you must register and make <span class="boldi">four valid pull requests (PRs) between October 1-31 (in any time zone)</span>. PRs can be made to any public repo on GitHub, not only the ones with issues labeled Hacktoberfest.If a maintainer reports your pull request as spam or behavior not in line with the project’s code of conduct, you will be ineligible to participate.<span class="boldi">This year, the first 70,000 participants who successfully complete the challenge will be eligible to receive a prize.</span></p>
+      <p class="lead">To know more about the event, visit <a href="https://hacktoberfest.digitalocean.com/">digitalocean</a></p>
+</div>
+
+</div>
+<!--<hr class="style-four">-->
+ <section id="FAQ" class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-left">
+     <h1 class="display-4">Freqently asked questions:</h1>
+    <div class="container shadow px-4 pt-4 pb-2">
+        <div class="">
+        <h1 class="h4">What is Hacktoberfest?</h1>
+        <p class="lead">Hacktoberfest is a month-long celebration of open source software run by DigitalOcean in partnership with GitHub.</p>
+        <ul>
+          <li class="lead">Hacktoberfest is open to everyone in our global community! </li>
+          <li class="lead">Five quality pull requests must be submitted to public GitHub repositories. </li>
+          <li class="lead">You can sign up anytime between October 1 and October 31.</li>
+        </ul>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">What is open source?</h1>
+            <p class="lead">Open source refers to source code that is publicly accessible and allows anyone to inspect, modify or learn from it. Open source projects encourage collaboration and the freedom to use the software for any purpose you wish.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">How do I get started?</h1>
+            <p class="lead">Register at <a href="https://hacktoberfest.digitalocean.com/">digitalocean.com</a>
+            And submit a PR to any public GitHub repository.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">I completed four pull requests. When will I receive my T-shirt?</h1>
+            <p class="lead">T-shirts (or the option to plant a tree) will be awarded on a first-come, first-serve basis to the first 70,000 participants who successfully complete the Hacktoberfest challenge. We’ll start sending out emails with more details on redeeming T-shirts throughout the month, so stay tuned.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">What do I do if I want to contribute to a project but it doesn’t have the hacktoberfest topic?</h1>
+            <p class="lead">You can still contribute to any public GitHub repository and have it count towards your progress provided that your pull request is labeled with hacktoberfest-accepted.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">Do multiple PRs to the same repo count?</h1>
+            <p class="lead">Yes, every one of them will count separately.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">Do PRs have to be accepted/merged?</h1>
+            <p class="lead">Your pull request will undergo a review period in which the repository will be checked for the Hacktoberfest topic or has a hacktoberfest-accepted label on it. We will continue to check this pull request and repository until November 1 for the hacktoberfest topic. If the topic is added to the repository, the pull request will become valid.</p>
+        </div>
+        <hr class="style-one">
+<!--''''-->
+        <div class="">
+            <h1 class="h4">Do PRs have to be accepted/merged?</h1>
+            <p class="lead">No. They will still count unless they are spam, irrelevant, or tagged as invalid.</p>
+        </div>
+<!--''''-->   
+</div>   
+</section> 
+
+
+<section class="px-3 py-3 pt-md-2 pb-md-4 mx-auto text-left" id="contact">
+    <div class="container shadow px-4 pt-2 pb-2">
+    <h3 class="display-6 text-left">More questions?Contact:</h3>
+    <h1 class="h6">Allen P Biju: <a href="mailto:allenpbiju1999@gmail.com">Mail, </a><a href="https://wa.me/917356410604">WhatsApp</a></h1>
+    <h1 class="h6">Abhishek Baiju: <a href="mailto:johnponnamkudam@gmail.com">Mail, </a><a href="https://wa.me/919809878285">WhatsApp</a></h1>
+    </div>
+</section>
+
+<!--scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/00c0663202.js" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>
