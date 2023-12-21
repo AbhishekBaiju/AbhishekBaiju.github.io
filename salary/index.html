@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #counter {
+      font-size: 24px;
+    }
+  </style>
+  <title>Countdown Timer</title>
+</head>
+<body>
+
+<div id="counter"></div>
+
+<script>
+  function updateCounter() {
+    const today = new Date();
+    const targetDate = new Date("January 7, 2024");
+    const timeRemaining = targetDate - today;
+
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    document.getElementById("counter").innerHTML = `Time remaining till i get my next salary: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+  }
+
+  setInterval(updateCounter, 1000);
+  updateCounter();
+</script>
+
+</body>
+</html>
