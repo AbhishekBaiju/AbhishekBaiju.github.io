@@ -6,37 +6,136 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      transition: color 0.5s ease, background-color 0.5s ease;
+    }
+
+    #countdown-container {
       text-align: center;
-      margin: 50px;
+      position: absolute;
     }
 
     #counter {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 20px;
+      transition: opacity 0.5s ease;
+    }
+
+    #counter div {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    #counter span {
       font-size: 24px;
+      font-weight: normal;
+      display: block;
+    }
+
+    #title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #website-link {
+      font-size: 20px;
+      text-decoration: underline;
+      transition: color 0.3s ease, font-size 0.3s ease;
+    }
+
+    #website-link:hover {
+      font-size: 22px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      #countdown-container {
+        position: static;
+      }
     }
   </style>
-  <title>Countdown Timer</title>
+  <title>Fuckk u HR</title>
+  <script>
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function updateCounter(event) {
+      const today = new Date();
+      const targetDate = new Date("January 8, 2024");
+      const timeRemaining = targetDate - today;
+
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      const counterElement = document.getElementById("counter");
+      const successMessageElement = document.getElementById("success-message");
+      const websiteLinkElement = document.getElementById("website-link");
+      const titleElement = document.getElementById("title");
+      const countdownContainer = document.getElementById("countdown-container");
+
+      if (timeRemaining > 0) {
+        counterElement.innerHTML = `
+          <div>${days} <span>days</span></div>
+          <div>${hours} <span>hours</span></div>
+          <div>${minutes} <span>minutes</span></div>
+          <div>${seconds} <span>seconds</span></div>
+        `;
+      } else {
+        counterElement.style.opacity = 0;
+        titleElement.innerHTML = "I finally got my salary!, fukk u HR i quit!!!! also I hate ur face, it is the most slapable face I've seen";
+      }
+
+      const randomColor = getRandomColor();
+      document.body.style.backgroundColor = randomColor;
+      const textColor = isLightColor(randomColor) ? "#000" : "#fff";
+      document.body.style.color = textColor;
+      websiteLinkElement.style.color = textColor;
+
+      if (event.type === 'touchmove') {
+        const touch = event.touches[0];
+        countdownContainer.style.left = touch.clientX + "px";
+        countdownContainer.style.top = touch.clientY + "px";
+      } else {
+        countdownContainer.style.left = event.clientX + "px";
+        countdownContainer.style.top = event.clientY + "px";
+      }
+    }
+
+    function isLightColor(color) {
+      const hex = color.replace(/^#/, '');
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+      return brightness > 128;
+    }
+
+    setInterval(updateCounter, 1000);
+    document.addEventListener('mousemove', updateCounter);
+    document.addEventListener('touchmove', updateCounter);
+    updateCounter();
+  </script>
 </head>
 <body>
 
-<div id="counter"></div>
-
-<script>
-  function updateCounter() {
-    const today = new Date();
-    const targetDate = new Date("January 7, 2024");
-    const timeRemaining = targetDate - today;
-
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-    document.getElementById("counter").innerHTML = `Time remaining till i get my next salary: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-  }
-
-  setInterval(updateCounter, 1000);
-  updateCounter();
-</script>
+<div id="countdown-container">
+  <div id="title">Time remaining till I get my salary</div>
+  <div id="counter"></div>
+  <a href="https://abhishekbaiju.github.io/" id="website-link" target="_blank">Abhishek Baiju</a>
+</div>
 
 </body>
 </html>
