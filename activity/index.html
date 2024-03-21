@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Time Percentage Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    #result {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Active Time Percentage Calculator</h1>
+  
+  <div class="form-group">
+    <label for="loggedTime">Logged Time (hh:mm:ss)</label>
+    <input type="text" class="form-control" id="loggedTime" placeholder="Enter logged time (hh:mm:ss)">
+  </div>
+  
+  <div class="form-group">
+    <label for="activeTime">Active Time (hh:mm:ss)</label>
+    <input type="text" class="form-control" id="activeTime" placeholder="Enter active time (hh:mm:ss)">
+  </div>
+  
+  <button type="button" class="btn btn-primary" onclick="calculatePercentage()">Calculate</button>
+  
+  <div id="result" class="mt-4"></div>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function calculatePercentage() {
+    var loggedTimeString = document.getElementById('loggedTime').value;
+    var activeTimeString = document.getElementById('activeTime').value;
+
+    var loggedTimeParts = loggedTimeString.split(':');
+    var activeTimeParts = activeTimeString.split(':');
+
+    var loggedTimeSeconds = (parseInt(loggedTimeParts[0]) * 3600) + (parseInt(loggedTimeParts[1]) * 60) + parseInt(loggedTimeParts[2]);
+    var activeTimeSeconds = (parseInt(activeTimeParts[0]) * 3600) + (parseInt(activeTimeParts[1]) * 60) + parseInt(activeTimeParts[2]);
+
+    if (isNaN(loggedTimeSeconds) || isNaN(activeTimeSeconds)) {
+      document.getElementById('result').innerHTML = '<div class="alert alert-danger" role="alert">Please enter valid time in the format hh:mm:ss.</div>';
+      return;
+    }
+
+    var percentage = (activeTimeSeconds / loggedTimeSeconds) * 100;
+    var percentage8Hours = (activeTimeSeconds / (8 * 3600)) * 100;
+
+    document.getElementById('result').innerHTML = '<div class="alert alert-success" role="alert">Percentage Active: ' + percentage.toFixed(2) + '%<br>Percentage of Active Time if it was 8 hours: ' + percentage8Hours.toFixed(2) + '%</div>';
+  }
+</script>
+
+</body>
+</html>
