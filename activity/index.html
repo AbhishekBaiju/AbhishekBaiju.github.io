@@ -1,105 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Calculate the percentage of active time based on logged time and active time input in hh:mm:ss format." />
+        <meta name="keywords" content="active time, percentage calculator, time calculator, web tool, web application" />
+        <meta name="author" content="Your Name" />
+        <title>Active Time Percentage Calculator</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400");
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Calculate the percentage of active time based on logged time and active time input in hh:mm:ss format." />
-  <meta name="keywords" content="active time, percentage calculator, time calculator, web tool, web application" />
-  <meta name="author" content="Your Name" />
-  <title>Active Time Percentage Calculator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,100&display=swap");
+            :root {
+                --text: #180215;
+                --background: #fdecfa;
+                --primary: #750a60;
+                --secondary: #f3886d;
+                --accent: #eb8014;
+                --shadow: 0 4px 30px #00000047;
+                --container-bg: #ffffff36;
+                --input-bg: #b79bb3;
+            }
 
-    body {
-      margin: 0;
-      background-color: #f8f9fa;
-      font-family: "Roboto Mono";
-    }
+            [data-theme="dark"] {
+                --text: #fde6fa;
+                --background: #140210;
+                --primary: #f588e0;
+                --secondary: #91260c;
+                --accent: #eb7f14;
+                --shadow: 0 2px 60px #000000e0;
+                --container-bg: rgba(255, 255, 255, 0.24);
+                --input-bg: #fde6fa;
+            }
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-    }
+            body {
+                margin: 0;
+                background-color: var(--background);
+                color: var(--text);
+                font-family: "Poppins";
+                font-weight: 400;
+                height: 100vh;
+            }
 
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
+            .color-effect {
+                background: linear-gradient(120deg, var(--primary), var(--accent));
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 700;
+            }
 
-    .btn-primary {
-      width: 100%;
-    }
+            #time-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
 
-    #result {
-      margin-top: 2rem;
-    }
-  </style>
-</head>
+            .container {
+                background: var(--container-bg);
+                border-radius: 16px;
+                box-shadow: var(--shadow) !important;
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                background-color: var(--container-bg);
+                max-width: 500px;
+            }
 
-<body>
-  <div class="container mt-5 shadow px-4 pt-4 pb-2">
-    <p class="h4 text-decoration-underline text-center mb-4">Active Time Percentage Calculator</p>
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
 
-    <form id="timeForm" onsubmit="event.preventDefault(); calculatePercentage();">
-      <div class="form-group">
-        <label for="loggedTime">Logged Time (hh:mm:ss):</label>
-        <input type="text" class="form-control" id="loggedTime" name="loggedTime"
-          placeholder="Enter logged time (hh:mm:ss)" required />
-      </div>
+            #result {
+                margin-top: 2rem;
+            }
 
-      <div class="form-group">
-        <label for="activeTime">Active Time (hh:mm:ss):</label>
-        <input type="text" class="form-control" id="activeTime" name="activeTime"
-          placeholder="Enter active time (hh:mm:ss)" required />
-      </div>
+            input {
+                background-color: var(--input-bg) !important;
+                border: 2px solid var(--text) !important;
+            }
 
-      <button type="submit" class="btn btn-primary">Calculate</button>
-    </form>
+            ::placeholder {
+                color: var(--background) !important;
+            }
 
-    <div id="result" class="mt-4"></div>
-  </div>
+            .buttons {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-template-rows: 1fr;
+                grid-column-gap: 20px;
+                grid-row-gap: 10px;
+            }
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+            .btn-primary {
+                grid-area: 1 / 2 / 2 / 3;
+                width: 100%;
+                background-color: var(--primary) !important;
+                transition: transform ease 0.2s, box-shadow ease 0.2s;
+                border: var(--primary) !important;
+            }
 
-  <script>
-    function calculatePercentage() {
-      var loggedTimeString = document.getElementById("loggedTime").value;
-      var activeTimeString = document.getElementById("activeTime").value;
+            .btn-primary:hover {
+                transform: translate(0, -3px);
+                background: linear-gradient(340deg, var(--primary), var(--accent));
+                box-shadow: 0 20px 80px -10px var(--primary);
+            }
 
-      var loggedTimeParts = loggedTimeString.split(":");
-      var activeTimeParts = activeTimeString.split(":");
+            .alert.alert-success {
+                background-color: var(--accent) !important;
+                color: var(--text);
+                border: 1px solid var(--secondary);
+            }
 
-      var loggedTimeSeconds = parseInt(loggedTimeParts[0]) * 3600 + parseInt(loggedTimeParts[1]) * 60 + parseInt(loggedTimeParts[2]);
-      var activeTimeSeconds = parseInt(activeTimeParts[0]) * 3600 + parseInt(activeTimeParts[1]) * 60 + parseInt(activeTimeParts[2]);
+            .btn-secondary {
+                grid-area: 1 / 1 / 2 / 2;
+                width: 100%;
+                background-color: var(--secondary) !important;
+                transition: transform ease 0.2s, box-shadow ease 0.2s;
+                border: var(--secondary) !important;
+            }
 
-      if (isNaN(loggedTimeSeconds) || isNaN(activeTimeSeconds)) {
-        document.getElementById("result").innerHTML = '<div class="alert alert-danger" role="alert">Please enter valid time in the format hh:mm:ss.</div>';
-        return;
-      }
+            .btn-secondary:hover {
+                background: linear-gradient(120deg, var(--primary), var(--accent));
+                transform: translate(0, -3px);
+                box-shadow: 0 20px 80px -10px var(--secondary);
+            }
 
-      var percentage = (activeTimeSeconds / loggedTimeSeconds) * 100;
-      var percentage8Hours = (activeTimeSeconds / (8 * 3600)) * 100;
+            @media (max-width: 514px) {
+                .buttons {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(2, 1fr);
+                    grid-column-gap: px;
+                    grid-row-gap: 9px;
+                }
 
-      var loggedTimeDecimal = loggedTimeSeconds / 3600;
+                .btn-primary {
+                    grid-area: 2 / 1 / 3 / 2;
+                }
 
-      document.getElementById("result").innerHTML =
-        '<div class="alert alert-success" role="alert">Logged Time (decimal): ' +
-        loggedTimeDecimal.toFixed(2) +
-        " hrs.<br>Percentage Active: " +
-        percentage.toFixed(2) +
-        "%.<br>Percentage Active(8 hrs): " +
-        percentage8Hours.toFixed(2) +
-        "%</div>";
-    }
-  </script>
-</body>
+                .btn-secondary {
+                    grid-area: 1 / 1 / 2 / 2;
+                }
+            }
 
+            .theme-switch-wrapper {
+                position: fixed;
+                right: 20px;
+                top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 30px;
+            }
+
+            .theme-switch {
+                display: inline-block;
+                height: 16px;
+                position: relative;
+                width: 30px;
+            }
+
+            .theme-switch input {
+                display: none;
+            }
+
+            .slider {
+                background-color: #ccc;
+                bottom: 0;
+                cursor: pointer;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                transition: 0.4s;
+            }
+
+            .slider:before {
+                background-color: #fff;
+                bottom: 2px;
+                content: "";
+                height: 12px;
+                left: 2px;
+                position: absolute;
+                transition: 0.4s;
+                width: 12px;
+            }
+
+            input:checked + .slider {
+                background-color: #2196f3;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(14px);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="time-container">
+            <div class="container m-4 px-4 pt-4 pb-2">
+                <h2 class="title h4 text-center mb-4">Active Time <span class="color-effect">Percentage</span> Calculator</h2>
+
+                <form id="timeForm" onsubmit="event.preventDefault(); calculatePercentage();">
+                    <div class="form-group">
+                        <label for="loggedTime" class="h6">Logged Time (hh:mm:ss):</label>
+                        <input type="text" class="form-control" id="loggedTime" name="loggedTime" placeholder="Enter logged time" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activeTime" class="h6">Active Time (hh:mm:ss):</label>
+                        <input type="text" class="form-control" id="activeTime" name="activeTime" placeholder="Enter active time" />
+                    </div>
+
+                    <div class="buttons">
+                        <button class="btn btn-secondary" type="button" onclick="clearForm()">Clear</button>
+                        <button class="btn btn-primary" type="submit">Calculate</button>
+                    </div>
+                </form>
+
+                <div id="result" class="mt-4"></div>
+            </div>
+        </div>
+
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+        <script>
+            function calculatePercentage() {
+                var loggedTimeString = document.getElementById("loggedTime").value;
+                var activeTimeString = document.getElementById("activeTime").value;
+
+                var loggedTimeParts = loggedTimeString.split(":");
+                var activeTimeParts = activeTimeString.split(":");
+
+                var loggedTimeSeconds = parseInt(loggedTimeParts[0]) * 3600 + parseInt(loggedTimeParts[1]) * 60 + parseInt(loggedTimeParts[2]);
+                var activeTimeSeconds = parseInt(activeTimeParts[0]) * 3600 + parseInt(activeTimeParts[1]) * 60 + parseInt(activeTimeParts[2]);
+
+                if (isNaN(loggedTimeSeconds) || isNaN(activeTimeSeconds)) {
+                    document.getElementById("result").innerHTML = '<div class="alert alert-danger" role="alert">Please enter valid time in the format hh:mm:ss.</div>';
+                    setTimeout(function () {
+                        document.getElementById("result").innerHTML = "";
+                    }, 2000);
+                    return;
+                }
+
+                var percentage = (activeTimeSeconds / loggedTimeSeconds) * 100;
+                var percentage8Hours = (activeTimeSeconds / (8 * 3600)) * 100;
+
+                var loggedTimeDecimal = loggedTimeSeconds / 3600;
+
+                document.getElementById("result").innerHTML =
+                    '<div class="alert alert-success" role="alert">Logged Time (decimal): ' +
+                    loggedTimeDecimal.toFixed(2) +
+                    " hrs.<br>Percentage Active: " +
+                    percentage.toFixed(2) +
+                    "%.<br>Percentage Active(8 hrs): " +
+                    percentage8Hours.toFixed(2) +
+                    "%</div>";
+            }
+            function clearForm() {
+                document.getElementById("timeForm").reset();
+                document.getElementById("result").innerHTML = "";
+            }
+        </script>
+        <script>
+            document.getElementById("checkbox").addEventListener("change", function () {
+                if (this.checked) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "light");
+                }
+            });
+        </script>
+    </body>
 </html>
