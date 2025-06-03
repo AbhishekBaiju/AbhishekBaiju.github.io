@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Creator - itekk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --text: #180215;
+            --background: #fdecfa;
+            --primary: #750a60;
+            --secondary: #f3886d;
+            --accent: #eb8014;
+            --shadow: 0 4px 30px #00000047;
+            --container-bg: #ffffff36;
+            --input-bg: #b79bb3;
+
+            --primary-rgb: 117, 10, 96;
+            --button-text-on-primary: #ffffff;
+            --input-text-color: #000000;
+            --task-item-bg: rgba(230, 210, 225, 0.5);
+            --task-item-border: #d3b6ce;
+            --output-bg: rgba(225, 200, 220, 0.4);
+            --output-border: #c8aec3;
+
+            --bs-body-color: var(--text);
+            --bs-body-bg: var(--background);
+            --bs-link-color: var(--primary);
+            --bs-link-hover-color: var(--accent);
+            --bs-border-color: var(--primary);
+        }
+
+        [data-theme="dark"] {
+            --text: #fde6fa;
+            --background: #140210;
+            --primary: #f588e0;
+            --secondary: #91260c;
+            --accent: #eb7f14;
+            --shadow: 0 2px 60px #000000e0;
+            --container-bg: rgba(255, 255, 255, 0.08);
+            --input-bg: #fde6fa;
+
+            --primary-rgb: 245, 136, 224;
+            --button-text-on-primary: #140210;
+            --input-text-color: #180215;
+            --task-item-bg: rgba(60, 30, 55, 0.5);
+            --task-item-border: #533f4f;
+            --output-bg: rgba(50, 25, 45, 0.4);
+            --output-border: #483043;
+
+            --bs-body-color: var(--text);
+            --bs-body-bg: var(--background);
+            --bs-link-color: var(--primary);
+            --bs-link-hover-color: var(--accent);
+            --bs-border-color: var(--primary);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 20px;
+            background-color: var(--background);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: var(--container-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .task-item-container {
+            border: 1px solid var(--task-item-border);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: var(--task-item-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: var(--input-bg) !important;
+            color: var(--input-text-color) !important;
+            border: 1px solid var(--task-item-border) !important;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: var(--input-text-color) !important;
+            opacity: 0.6;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25) !important;
+        }
+
+        #outputArea {
+            background-color: var(--output-bg);
+            border: 1px solid var(--output-border);
+            color: var(--text);
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 150px;
+            font-family: Consolas, "Courier New", monospace;
+            white-space: pre-wrap;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        #outputArea ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        #outputArea li {
+            margin-bottom: 0.3em;
+        }
+
+        #outputArea strong,
+        #outputArea u {
+            color: var(--text) !important;
+        }
+
+        #outputArea p,
+        #outputArea em {
+            color: var(--text) !important;
+        }
+
+
+        .btn {
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, filter 0.2s ease-in-out;
+        }
+
+        .btn-primary,
+        .btn-success {
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: var(--button-text-on-primary) !important;
+        }
+
+        .btn-success {
+            background-color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            color: var(--background) !important;
+        }
+
+        [data-theme="dark"] .btn-success {
+            color: var(--text) !important;
+        }
+
+
+        .btn-primary:hover,
+        .btn-success:hover {
+            filter: brightness(115%);
+        }
+
+        [data-theme="dark"] .btn-primary:hover,
+        [data-theme="dark"] .btn-success:hover {
+            filter: brightness(85%);
+        }
+
+        .btn-info {
+            background-color: var(--secondary) !important;
+            border-color: var(--secondary) !important;
+            color: var(--text) !important;
+        }
+
+        .btn-info:hover {
+            filter: brightness(115%);
+        }
+
+        [data-theme="dark"] .btn-info:hover {
+            filter: brightness(85%);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: var(--button-text-on-primary) !important;
+        }
+
+        .btn-secondary:hover {
+            filter: brightness(115%);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            filter: brightness(85%);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary) !important;
+            color: var(--button-text-on-primary) !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            background-color: transparent !important;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--accent) !important;
+            color: var(--background) !important;
+        }
+
+        [data-theme="dark"] .btn-outline-secondary:hover {
+            color: var(--text) !important;
+        }
+
+        #themeSwitcher {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1050;
+            padding: 0.3rem 0.6rem;
+            font-size: 1.2rem;
+            background-color: var(--accent) !important;
+            border: 1px solid var(--primary) !important;
+            color: var(--text) !important;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-theme="dark"] #themeSwitcher {
+            color: var(--background) !important;
+        }
+
+        #feedbackArea.alert {
+            background-color: var(--task-item-bg) !important;
+            color: var(--text) !important;
+            border-color: var(--task-item-border) !important;
+        }
+
+        #feedbackArea.alert-success {
+            background-color: var(--primary) !important;
+            color: var(--button-text-on-primary) !important;
+            border-color: var(--primary) !important;
+        }
+
+        #feedbackArea.alert-danger {
+            background-color: var(--secondary) !important;
+            color: var(--text) !important;
+            border-color: var(--secondary) !important;
+        }
+
+        #feedbackArea.alert-warning {
+            background-color: var(--accent) !important;
+            color: var(--text) !important;
+            border-color: var(--accent) !important;
+        }
+
+        #loadControlsContainer {
+            display: none;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="themeSwitcher" class="btn" title="Toggle theme">🌓</button>
+
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Task Creator - itekk</h1>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="updateDate" class="form-label fw-bold">Date:</label>
+                <input type="date" id="updateDate" class="form-control">
+            </div>
+        </div>
+
+        <h3 class="mt-4 mb-3">Tasks:</h3>
+        <div id="tasksListContainer">
+        </div>
+
+        <button type="button" class="btn btn-outline-primary mt-2 mb-4" id="addTaskItemBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>
+            Add Task Item
+        </button>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
+            <button type="button" class="btn btn-success" id="generateUpdateBtn">Generate Update</button>
+            <button type="button" class="btn btn-info" id="copyToClipboardBtn" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                    <path
+                        d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                    <path
+                        d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                </svg>
+                Copy for Google Chat
+            </button>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-2">
+            <button type="button" class="btn btn-secondary" id="saveToLocalBtn">Save Current Update</button>
+            <button type="button" class="btn btn-outline-secondary" id="showLoadOptionsBtn">Load Saved Update</button>
+        </div>
+        <div id="loadControlsContainer" class="row gx-2 align-items-center">
+            <div class="col">
+                <label for="savedUpdatesSelect" class="form-label visually-hidden">Select update to load</label>
+                <select id="savedUpdatesSelect" class="form-select"></select>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" id="loadSelectedBtn">Load</button>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-danger" id="deleteSelectedBtn">Delete</button>
+            </div>
+        </div>
+        <div id="feedbackArea" class="mt-3 mb-3"></div>
+
+
+        <h3 class="mt-4">Generated Update:</h3>
+        <div id="outputArea" aria-live="polite">
+            Your generated update will appear here.
+        </div>
+        <textarea id="gChatOutput" style="opacity:0; position: absolute; left: -9999px; height:0; width:0;"></textarea>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        const docElement = document.documentElement;
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                docElement.setAttribute('data-theme', 'dark');
+                if (themeSwitcher) themeSwitcher.innerHTML = '☀️';
+            } else {
+                docElement.removeAttribute('data-theme');
+                if (themeSwitcher) themeSwitcher.innerHTML = '🌙';
+            }
+        }
+        function toggleTheme() {
+            const currentTheme = docElement.hasAttribute('data-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            try { localStorage.setItem('theme', newTheme); } catch (e) { console.warn("LS theme save error", e); }
+        }
+        function loadInitialTheme() {
+            let savedTheme = null;
+            try { savedTheme = localStorage.getItem('theme'); } catch (e) { console.warn("LS theme load error", e); }
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme) applyTheme(savedTheme);
+            else if (prefersDark) applyTheme('dark');
+            else applyTheme('light');
+        }
+        loadInitialTheme();
+        if (themeSwitcher) themeSwitcher.addEventListener('click', toggleTheme);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const updateDateInput = document.getElementById('updateDate');
+            const tasksListContainer = document.getElementById('tasksListContainer');
+            const addTaskItemBtn = document.getElementById('addTaskItemBtn');
+            const generateUpdateBtn = document.getElementById('generateUpdateBtn');
+            const copyToClipboardBtn = document.getElementById('copyToClipboardBtn');
+            const outputArea = document.getElementById('outputArea');
+            const gChatOutput = document.getElementById('gChatOutput'); // Hidden textarea for GChat
+            const saveToLocalBtn = document.getElementById('saveToLocalBtn');
+            const showLoadOptionsBtn = document.getElementById('showLoadOptionsBtn');
+            const loadControlsContainer = document.getElementById('loadControlsContainer');
+            const savedUpdatesSelect = document.getElementById('savedUpdatesSelect');
+            const loadSelectedBtn = document.getElementById('loadSelectedBtn');
+            const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+            const feedbackArea = document.getElementById('feedbackArea');
+            const LOCAL_STORAGE_KEY_MAIN = 'jobUpdateAppSaves';
+            let taskItemCounter = 0;
+
+            function setDefaultDate() {
+                const today = new Date();
+                updateDateInput.value = today.toISOString().split('T')[0];
+            }
+            setDefaultDate();
+
+            function createTaskItemElement(taskData = {}) {
+                taskItemCounter++;
+                const taskItemDiv = document.createElement('div');
+                taskItemDiv.classList.add('task-item-container');
+                taskItemDiv.setAttribute('id', `task-item-${taskItemCounter}`);
+                taskItemDiv.innerHTML = `
+                    <div class="task-inputs">
+                        <div class="mb-2"><input type="text" class="form-control task-title" placeholder="Task Title (Optional)" value="${escapeHtml(taskData.title || '')}"></div>
+                        <div class="mb-2"><input type="text" class="form-control task-description" placeholder="Task details worked on" value="${escapeHtml(taskData.description || '')}"></div>
+                        <div class="row gx-2">
+                            <div class="col"><input type="number" class="form-control task-hours" placeholder="Hrs" step="0.1" min="0" value="${taskData.hours || ''}"></div>
+                            <div class="col"><input type="number" class="form-control task-percentage" placeholder="% Done" min="0" max="100" value="${taskData.percentage || ''}"></div>
+                        </div>
+                    </div>
+                    <div class="text-end mt-2"><button type="button" class="btn btn-sm btn-danger btn-remove-task" aria-label="Remove task item">Remove</button></div>`;
+
+                tasksListContainer.appendChild(taskItemDiv);
+                taskItemDiv.querySelector('.btn-remove-task').addEventListener('click', () => {
+                    taskItemDiv.remove();
+                    showFeedback("Task item removed.", "info");
+                });
+                return taskItemDiv;
+            }
+
+            addTaskItemBtn.addEventListener('click', () => createTaskItemElement());
+
+            function escapeHtml(unsafe) {
+                if (typeof unsafe !== 'string') return unsafe;
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            generateUpdateBtn.addEventListener('click', function () {
+                let htmlOutput = "";
+                let gChatText = "";
+
+                const dateValueRaw = updateDateInput.value;
+                if (!dateValueRaw) {
+                    outputArea.innerHTML = "<p style='color:red;'>Please select a date.</p>";
+                    copyToClipboardBtn.style.display = 'none';
+                    showFeedback("Date is missing.", "danger");
+                    return;
+                }
+                const dateValue = new Date(dateValueRaw + "T00:00:00");
+                const formattedDate = dateValue.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                htmlOutput += `<p><strong><u>${formattedDate}</u></strong></p>`;
+                gChatText += `*${formattedDate}*\n`;
+
+                const taskItems = tasksListContainer.querySelectorAll('.task-item-container');
+                let totalHours = 0;
+                let percentageValues = [];
+                let hasContentForGChat = false;
+
+
+                if (taskItems.length === 0) {
+                    outputArea.innerHTML = "<p class='text-warning'>Please add at least one task item.</p>";
+                    copyToClipboardBtn.style.display = 'none';
+                    showFeedback("No tasks added.", "warning");
+                    return;
+                }
+
+                htmlOutput += '<ul>';
+                taskItems.forEach(item => {
+                    const title = item.querySelector('.task-title').value.trim();
+                    const description = item.querySelector('.task-description').value.trim();
+                    const hoursInput = item.querySelector('.task-hours').value;
+                    const percentageInput = item.querySelector('.task-percentage').value;
+
+                    if (title) {
+                        htmlOutput += `<li><strong>${escapeHtml(title)}:</strong></li>`;
+                        gChatText += `• *${escapeHtml(title)}:*\n`;
+                        hasContentForGChat = true;
+                    }
+
+                    if (description) {
+                        const hours = parseFloat(hoursInput);
+                        const percentage = parseInt(percentageInput, 10);
+                        if (!isNaN(hours) && hours > 0 && !isNaN(percentage) && percentage >= 0 && percentage <= 100) {
+                            htmlOutput += `<li>${escapeHtml(description)} (${hours.toFixed(1)}hr${hours === 1 ? '' : 's'} - ${percentage}%)</li>`;
+                            gChatText += `• ${escapeHtml(description)} (${hours.toFixed(1)}hr${hours === 1 ? '' : 's'} - ${percentage}%)\n`;
+                            totalHours += hours;
+                            percentageValues.push(percentage);
+                        } else {
+                            htmlOutput += `<li>${escapeHtml(description)}</li>`;
+                            gChatText += `• ${escapeHtml(description)}\n`;
+                        }
+                        hasContentForGChat = true;
+                    }
+                });
+                htmlOutput += '</ul>';
+
+                if (percentageValues.length > 0) {
+                    const sumOfPercentages = percentageValues.reduce((sum, p) => sum + p, 0);
+                    const averagePercentage = Math.round(sumOfPercentages / percentageValues.length);
+                    const summaryText = `(${totalHours.toFixed(1)}hr${totalHours === 1 ? '' : 's'} - ${averagePercentage}%)`;
+                    htmlOutput += `<p class="total-summary"><strong><u>${summaryText}</u></strong></p>`;
+                    gChatText += `*${summaryText}*\n`;
+                    hasContentForGChat = true;
+                } else if (taskItems.length > 0 && totalHours === 0 && hasContentForGChat) {
+                    const summaryText = "(No tasks with billable hours/progress tracked)";
+                    htmlOutput += `<p class="total-summary"><em>${summaryText}</em></p>`;
+                    gChatText += `_${summaryText}_\n`;
+                }
+
+                outputArea.innerHTML = htmlOutput;
+                gChatOutput.value = gChatText;
+
+                if (hasContentForGChat) {
+                    copyToClipboardBtn.style.display = 'inline-block';
+                    resetCopyButton();
+                } else {
+                    copyToClipboardBtn.style.display = 'none';
+                }
+                showFeedback("Update generated.", "success");
+            });
+
+            function resetCopyButton() {
+                const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg> Copy for Google Chat`;
+                copyToClipboardBtn.innerHTML = iconSVG;
+                copyToClipboardBtn.classList.remove('btn-success');
+                copyToClipboardBtn.classList.add('btn-info');
+            }
+
+            copyToClipboardBtn.addEventListener('click', function () {
+                const textToCopy = gChatOutput.value;
+
+
+                if (!textToCopy || textToCopy.trim() === "") {
+                    showFeedback('Nothing to copy. Generate content first.', 'warning');
+                    return;
+                }
+
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        copyToClipboardBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg> Copied!`;
+                        copyToClipboardBtn.classList.remove('btn-info');
+                        copyToClipboardBtn.classList.add('btn-success'); // Indicate success
+                        setTimeout(resetCopyButton, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Clipboard writeText failed: ', err);
+                        copyToClipboardBtn.textContent = 'Copy Failed';
+                        showFeedback('Copy failed. Check browser permissions or try again.', 'danger');
+                        setTimeout(resetCopyButton, 3000);
+                    });
+            });
+
+
+            function getSavedUpdates() {
+                try {
+                    const rawData = localStorage.getItem(LOCAL_STORAGE_KEY_MAIN);
+                    return rawData ? JSON.parse(rawData) : {};
+                } catch (e) {
+                    console.error("Error reading saved updates:", e);
+                    return {};
+                }
+            }
+
+            function saveUpdates(updatesObject) {
+                try {
+                    localStorage.setItem(LOCAL_STORAGE_KEY_MAIN, JSON.stringify(updatesObject));
+                } catch (e) {
+                    console.error("Error saving updates to local storage:", e);
+                    showFeedback('Error saving data. Local storage might be full or disabled.', 'danger');
+                }
+            }
+
+            saveToLocalBtn.addEventListener('click', function () {
+                const saveTitle = prompt("Enter a title for this save:", `Update ${new Date().toLocaleDateString()}`);
+                if (!saveTitle || saveTitle.trim() === "") {
+                    showFeedback("Save cancelled or no title provided.", "warning");
+                    return;
+                }
+
+                const currentUpdateData = {
+                    date: updateDateInput.value,
+                    tasks: []
+                };
+                const taskItems = tasksListContainer.querySelectorAll('.task-item-container');
+                taskItems.forEach(item => {
+                    currentUpdateData.tasks.push({
+                        title: item.querySelector('.task-title').value,
+                        description: item.querySelector('.task-description').value,
+                        hours: item.querySelector('.task-hours').value,
+                        percentage: item.querySelector('.task-percentage').value
+                    });
+                });
+
+                const allSaves = getSavedUpdates();
+                allSaves[saveTitle.trim()] = currentUpdateData;
+                saveUpdates(allSaves);
+                showFeedback(`Update saved as "${escapeHtml(saveTitle.trim())}".`, 'success');
+                populateLoadDropdown();
+            });
+
+            function populateLoadDropdown() {
+                const allSaves = getSavedUpdates();
+                const savedKeys = Object.keys(allSaves);
+                savedUpdatesSelect.innerHTML = "";
+
+                if (savedKeys.length === 0) {
+                    savedUpdatesSelect.innerHTML = '<option disabled>No saved updates found</option>';
+                    loadSelectedBtn.disabled = true;
+                    deleteSelectedBtn.disabled = true;
+                    return;
+                }
+
+                savedKeys.sort().forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = escapeHtml(key);
+                    savedUpdatesSelect.appendChild(option);
+                });
+                loadSelectedBtn.disabled = false;
+                deleteSelectedBtn.disabled = false;
+            }
+
+            showLoadOptionsBtn.addEventListener('click', function () {
+                const isHidden = loadControlsContainer.style.display === 'none' || loadControlsContainer.style.display === '';
+                loadControlsContainer.style.display = isHidden ? 'flex' : 'none';
+                if (isHidden) {
+                    populateLoadDropdown();
+                }
+            });
+
+            loadSelectedBtn.addEventListener('click', function () {
+                const selectedTitle = savedUpdatesSelect.value;
+                if (!selectedTitle || savedUpdatesSelect.selectedOptions[0].disabled) {
+                    showFeedback("Please select an update to load.", "warning");
+                    return;
+                }
+                const allSaves = getSavedUpdates();
+                const dataToLoad = allSaves[selectedTitle];
+
+                if (dataToLoad) {
+                    updateDateInput.value = dataToLoad.date || '';
+                    if (!dataToLoad.date) setDefaultDate();
+
+                    tasksListContainer.innerHTML = '';
+                    taskItemCounter = 0;
+
+                    if (dataToLoad.tasks && dataToLoad.tasks.length > 0) {
+                        dataToLoad.tasks.forEach(taskData => createTaskItemElement(taskData));
+                    } else {
+                        createTaskItemElement();
+                    }
+                    showFeedback(`Update "${escapeHtml(selectedTitle)}" loaded.`, 'success');
+                    outputArea.innerHTML = "Update loaded. Generate to view.";
+                    copyToClipboardBtn.style.display = 'none';
+                } else {
+                    showFeedback(`Could not find saved update: "${escapeHtml(selectedTitle)}".`, 'danger');
+                    populateLoadDropdown();
+                }
+            });
+
+            deleteSelectedBtn.addEventListener('click', function () {
+                const selectedTitle = savedUpdatesSelect.value;
+                if (!selectedTitle || savedUpdatesSelect.selectedOptions[0].disabled) {
+                    showFeedback("Please select an update to delete.", "warning");
+                    return;
+                }
+
+                if (confirm(`Are you sure you want to delete the saved update: "${escapeHtml(selectedTitle)}"?`)) {
+                    const allSaves = getSavedUpdates();
+                    if (allSaves[selectedTitle]) {
+                        delete allSaves[selectedTitle];
+                        saveUpdates(allSaves);
+                        showFeedback(`Update "${escapeHtml(selectedTitle)}" deleted.`, 'success');
+                        populateLoadDropdown();
+                    } else {
+                        showFeedback(`Could not find saved update to delete: "${escapeHtml(selectedTitle)}".`, 'warning');
+                    }
+                }
+            });
+
+            function showFeedback(message, type = 'info') {
+                feedbackArea.textContent = message;
+                feedbackArea.className = `mt-3 mb-3 alert alert-${type} p-2`;
+                setTimeout(() => {
+                    feedbackArea.textContent = '';
+                    feedbackArea.className = 'mt-3 mb-3';
+                }, 3000);
+            }
+
+            if (tasksListContainer.children.length === 0) {
+                createTaskItemElement();
+            }
+            populateLoadDropdown();
+            if (savedUpdatesSelect.options.length === 0 ||
+                (savedUpdatesSelect.options.length === 1 && savedUpdatesSelect.options[0].disabled)) {
+                loadControlsContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
