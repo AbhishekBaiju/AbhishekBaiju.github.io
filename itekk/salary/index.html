@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salary Deduction Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-box {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Salary Deduction Calculator</h2>
+
+        <div class="row g-4">
+            <!-- Input Section -->
+            <div class="col-lg-6">
+                <div class="card p-4">
+                    <h5 class="mb-3">Input Details</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Monthly In-Hand Salary</label>
+                        <input type="number" id="salary" class="form-control" placeholder="Enter salary" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Month</label>
+                            <select id="month" class="form-select"></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Year</label>
+                            <select id="year" class="form-select"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Leaves Taken</label>
+                        <input type="number" id="leaves" class="form-control" value="0" min="0" />
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="taxToggle">
+                        <label class="form-check-label" for="taxToggle">Apply Professional Tax</label>
+                    </div>
+                    <div id="taxInputContainer" class="mb-3 d-none">
+                        <label class="form-label">Professional Tax Amount</label>
+                        <input type="number" id="taxAmount" class="form-control" value="0" min="0" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="col-lg-6">
+                <div class="stats-box">
+                    <h5 class="mb-3">Final Salary Stats</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between"><span>Per Day Salary:</span> <span
+                                id="perDay">-</span></li>
+                        <li class="list-group-item d-flex justify-content-between"><span>No. of Working Days:</span>
+                            <span id="workingDays">-</span></li>
+                        <li class="list-group-item d-flex justify-content-between"><span>Leaves Deduction:</span> <span
+                                id="leaveDeduction">-</span></li>
+                        <li class="list-group-item d-flex justify-content-between"><span>Professional Tax:</span> <span
+                                id="taxDeduction">-</span></li>
+                        <li class="list-group-item d-flex justify-content-between"><span>Total Deductions:</span> <span
+                                id="totDeduction">-</span></li>
+                        <li class="list-group-item d-flex justify-content-between fw-bold"><span>Final In-Hand:</span>
+                            <span id="finalSalary">-</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const salaryInput = document.getElementById('salary');
+        const leavesInput = document.getElementById('leaves');
+        const monthSelect = document.getElementById('month');
+        const yearSelect = document.getElementById('year');
+        const taxToggle = document.getElementById('taxToggle');
+        const taxInputContainer = document.getElementById('taxInputContainer');
+        const taxAmountInput = document.getElementById('taxAmount');
+
+        const perDayEl = document.getElementById('perDay');
+        const workingDaysEl = document.getElementById('workingDays');
+        const leaveDeductionEl = document.getElementById('leaveDeduction');
+        const taxDeductionEl = document.getElementById('taxDeduction');
+        const totDeductionEl = document.getElementById('totDeduction');
+        const finalSalaryEl = document.getElementById('finalSalary');
+
+        function getWorkingDays(year, month) {
+            let workingDays = 0;
+            const date = new Date(year, month, 1);
+            while (date.getMonth() === month) {
+                const day = date.getDay();
+                if (day !== 0 && day !== 6) workingDays++;
+                date.setDate(date.getDate() + 1);
+            }
+            return workingDays;
+        }
+
+        function updateStats() {
+            const salary = parseFloat(salaryInput.value) || 0;
+            const leaves = parseInt(leavesInput.value) || 0;
+            const month = parseInt(monthSelect.value);
+            const year = parseInt(yearSelect.value);
+            const tax = taxToggle.checked ? (parseFloat(taxAmountInput.value) || 0) : 0;
+
+            const workingDays = getWorkingDays(year, month);
+            const perDay = workingDays ? (salary / workingDays) : 0;
+            const leaveDeduction = perDay * leaves;
+            const finalSalary = salary - leaveDeduction - tax;
+            const deds = leaveDeduction - tax;
+            perDayEl.textContent = perDay.toFixed(2);
+            workingDaysEl.textContent = workingDays;
+            leaveDeductionEl.textContent = leaveDeduction.toFixed(2);
+            taxDeductionEl.textContent = tax.toFixed(2);
+            totDeduction.textContent = deds.toFixed(2)
+            finalSalaryEl.textContent = finalSalary.toFixed(2);
+
+            localStorage.setItem('salary', salary);
+            localStorage.setItem('tax', tax);
+        }
+
+        // Populate month/year dropdowns
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        months.forEach((m, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = m;
+            monthSelect.appendChild(opt);
+        });
+
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear - 2; y <= currentYear + 1; y++) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+
+        // Auto select previous month
+        const today = new Date();
+        let prevMonth = today.getMonth() - 1;
+        let year = today.getFullYear();
+        if (prevMonth < 0) { prevMonth = 11; year--; }
+        monthSelect.value = prevMonth;
+        yearSelect.value = year;
+
+        // Load saved values
+        if (localStorage.getItem('salary')) salaryInput.value = localStorage.getItem('salary');
+        if (localStorage.getItem('tax')) {
+            taxToggle.checked = parseFloat(localStorage.getItem('tax')) > 0;
+            taxAmountInput.value = localStorage.getItem('tax');
+            if (taxToggle.checked) taxInputContainer.classList.remove('d-none');
+        }
+
+        // Event listeners
+        [salaryInput, leavesInput, monthSelect, yearSelect, taxAmountInput].forEach(el => el.addEventListener('input', updateStats));
+        taxToggle.addEventListener('change', () => {
+            taxInputContainer.classList.toggle('d-none', !taxToggle.checked);
+            updateStats();
+        });
+
+        updateStats();
+    </script>
+</body>
+
+</html>
